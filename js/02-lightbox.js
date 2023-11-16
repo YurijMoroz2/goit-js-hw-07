@@ -33,7 +33,7 @@ function handelClick(event) {
       return;
   };
   const modalImg = event.target.closest(".gallery__link").getAttribute("href");
-  console.log(modalImg)
+  // console.log(modalImg)
  
 //  -----------------------------------------------------------
 let gallery = new SimpleLightbox('.gallery__item a',{ captionsData: "alt", captionDelay: 250});
@@ -43,10 +43,14 @@ gallery.on('show.simplelightbox', function () {
       `;
 });
 // -----------------------------------------------------------
-  document.addEventListener("keydown", (event) => {
-      if (event.code === "Escape") {
-          return gallery.close();
-      }
-      return;
-  })
+    document.addEventListener("keydown", handelKeydown);
+  document.removeEventListener("keydown", handelKeydown);
+
+function handelKeydown(event) {
+console.log("close")
+if (event.code === "Escape") {
+return gallery.close();
+}
+return console.log("no close");
+};
 };
